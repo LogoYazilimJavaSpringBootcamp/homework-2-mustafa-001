@@ -5,6 +5,7 @@ import com.fatura.database.CustomerDatabase;
 import com.fatura.database.InvoiceDatabase;
 import com.fatura.entities.Company;
 import com.fatura.entities.Customer;
+import com.fatura.entities.CustomerFactory;
 import com.fatura.entities.Invoice;
 
 import java.math.BigDecimal;
@@ -15,17 +16,17 @@ import java.util.List;
 
 public class App {
     public static void main(String[] args) {
-        var customers = new ArrayList<Customer>(List.of(
-                new Customer("Mehmet Şahin", ZonedDateTime.now(), new ArrayList<Invoice>()),
-                new Customer("Ali Serçe", ZonedDateTime.now(), new ArrayList<Invoice>()),
-                new Customer("Mustafa Kartal", ZonedDateTime.now(), new ArrayList<Invoice>()),
-                new Customer("Ahmet Leylek", ZonedDateTime.now(), new ArrayList<Invoice>())
+        var customers = new ArrayList<>(List.of(
+                CustomerFactory.newCustomer("Mehmet Şahin"),
+                CustomerFactory.newCustomer("Ali Serçe"),
+                CustomerFactory.newCustomer("Mustafa Kartal"),
+                CustomerFactory.newCustomer("Ahmet Leylek")
         ));
-        var companies = new ArrayList<Company>(List.of(
+        var companies = new ArrayList<>(List.of(
                 new Company("ABC İnşaat", "İnşaat"),
                 new Company("XYZ Gıda", "Gıda")
         ));
-        var invoices = new ArrayList<Invoice>(List.of(
+        var invoices = new ArrayList<>(List.of(
                 new Invoice(ZonedDateTime.now().minusDays(4), new BigDecimal(10000), companies.get(0)),
                 new Invoice(ZonedDateTime.now().minusDays(5), new BigDecimal(1000), companies.get(1)),
                 new Invoice(ZonedDateTime.now().minusDays(6), new BigDecimal(100), companies.get(1))
@@ -33,7 +34,8 @@ public class App {
 
         customers.get(1).getInvoices().add(invoices.get(1));
 
-        var customerDb = new CustomerDatabase(customers);
+        var customerDb = CustomerDatabase.getInstance();
+        customerDb.addAll(customers);
         var companiesDb = new CompanyDatabase(companies);
         var invoicesDb = new InvoiceDatabase(invoices);
 
@@ -46,7 +48,6 @@ public class App {
         System.out.println("----------------------------");
         System.out.println("Tüm müşteriler:");
         customerDatabase.getAll()
-                .stream()
                 .forEach(System.out::println);
 
         //Yeni müşteri oluşturma.
@@ -56,7 +57,6 @@ public class App {
         customerDatabase.add("Hatice Kırlangıç", ZonedDateTime.now());
         System.out.println("Tüm müşteriler:");
         customerDatabase.getAll()
-                .stream()
                 .forEach(System.out::println);
 
         System.out.println("----------------------------");
@@ -71,7 +71,7 @@ public class App {
                 .reduce(new BigDecimal(0), BigDecimal::add);
         System.out.println("----------------------------");
         System.out.print("Haziran ayında kayıt olan müsterilerin faturalarının toplam tutarı:\t");
-        System.out.println(totalAmountByUsersInJune.toString());
+        System.out.println(totalAmountByUsersInJune);
 
         System.out.println("----------------------------");
         System.out.println("Sistemdeki tüm faturalar:");

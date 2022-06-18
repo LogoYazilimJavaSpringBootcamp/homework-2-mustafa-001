@@ -16,6 +16,11 @@ public abstract class Database<T> {
     public void add(T item) {
         items.add(item);
     }
+    public void  addAll(Collection<T> items){
+        for (var item: items) {
+            this.add(item);
+        }
+    }
 
     public T get(int index) {
         return items.get(index);

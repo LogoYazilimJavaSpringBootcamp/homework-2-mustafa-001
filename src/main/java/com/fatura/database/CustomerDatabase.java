@@ -6,8 +6,17 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 
 public  final class CustomerDatabase extends  Database<Customer> {
-    public CustomerDatabase(ArrayList<Customer> items) {
-        super(items);
+    private static CustomerDatabase thisInstance;
+
+    //Create an instance of this class if it does not exist. Return that instance.
+    public static synchronized CustomerDatabase getInstance() {
+        if (thisInstance == null){
+            thisInstance = new CustomerDatabase();
+        }
+        return  thisInstance;
+    }
+    private CustomerDatabase(){
+        super(new ArrayList<>());
     }
 
     @Override
