@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Invoice {
+public abstract class Invoice {
     private ZonedDateTime date;
     private BigDecimal amount;
     private Company company;

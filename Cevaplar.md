@@ -35,11 +35,15 @@ C++11 ile birlikte gelen `unique_ptr` ve `shared_ptr` ile RAII yardımıyla scop
 
 ### Creational Patterns neler? Önceki ödevde oluşturulan nesnelerinizi factory Design patterni ile oluşacak şekilde düzenleyin. (25 Puan)
 Nesnelerin oluşturulmasında kullanılan patternlardır. Sistemin kullandığı nesnenin tam bilgisini encapsulate eder (interface ile abstractiona izin verir) ve nesnelerin nasıl oluşturulduğu bilgisini/sorumluluğunu nesnenin kullanımından ayırır.
-- Factory Pattern
+- Abstract Factory Pattern
+- Factory Method Pattern
 - Builder Pattern
 - Prototype Pattern
 - Singleton Pattern
 
+### Singleton ve AbstractFactory patterlerini implemente eden kodu yazın.(25 Puan)
+- [Singleton olarak implemente edilmiş CustomerDatabse sınıfı](src/main/java/com/fatura/database/CompanyDatabase.java)
+- [Abstract Invoice sınıfını üreten AbstractInvoiceFactory implementasyonu](src/main/java/com/fatura/entities/factories/AbstractInvoiceFactory.java)
 
 
 

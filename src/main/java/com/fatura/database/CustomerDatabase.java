@@ -5,17 +5,19 @@ import com.fatura.entities.Customer;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 
-public  final class CustomerDatabase extends  Database<Customer> {
+//A singleton CustomerDatabase.
+public final class CustomerDatabase extends Database<Customer> {
     private static CustomerDatabase thisInstance;
 
     //Create an instance of this class if it does not exist. Return that instance.
     public static synchronized CustomerDatabase getInstance() {
-        if (thisInstance == null){
+        if (thisInstance == null) {
             thisInstance = new CustomerDatabase();
         }
-        return  thisInstance;
+        return thisInstance;
     }
-    private CustomerDatabase(){
+
+    private CustomerDatabase() {
         super(new ArrayList<>());
     }
 
@@ -25,7 +27,7 @@ public  final class CustomerDatabase extends  Database<Customer> {
     }
 
     //Overload on this class's add method.
-    public void add(String name, ZonedDateTime time){
+    public void add(String name, ZonedDateTime time) {
         var c = new Customer(name, time, new ArrayList<>());
         this.add(c);
     }

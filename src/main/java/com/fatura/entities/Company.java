@@ -1,10 +1,9 @@
 package com.fatura.entities;
 
+//Class representing a company.
 public class Company {
     private String name;
     private String field;
-
-
     public Company(String name, String field) {
         this.name = name;
         this.field = field;

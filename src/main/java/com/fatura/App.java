@@ -3,10 +3,9 @@ package com.fatura;
 import com.fatura.database.CompanyDatabase;
 import com.fatura.database.CustomerDatabase;
 import com.fatura.database.InvoiceDatabase;
-import com.fatura.entities.Company;
-import com.fatura.entities.Customer;
-import com.fatura.entities.CustomerFactory;
-import com.fatura.entities.Invoice;
+import com.fatura.entities.*;
+import com.fatura.entities.factories.AbstractInvoiceFactory;
+import com.fatura.entities.factories.CustomerFactory;
 
 import java.math.BigDecimal;
 import java.time.Month;
@@ -26,18 +25,21 @@ public class App {
                 new Company("ABC İnşaat", "İnşaat"),
                 new Company("XYZ Gıda", "Gıda")
         ));
+        var invoiceFactory = new AbstractInvoiceFactory();
         var invoices = new ArrayList<>(List.of(
-                new Invoice(ZonedDateTime.now().minusDays(4), new BigDecimal(10000), companies.get(0)),
-                new Invoice(ZonedDateTime.now().minusDays(5), new BigDecimal(1000), companies.get(1)),
-                new Invoice(ZonedDateTime.now().minusDays(6), new BigDecimal(100), companies.get(1))
+                invoiceFactory.get(ZonedDateTime.now().minusDays(4), new BigDecimal(10000), companies.get(0), ZonedDateTime.now().plusDays(1)),
+                invoiceFactory.get(ZonedDateTime.now().minusDays(5), new BigDecimal(1000), companies.get(1), ZonedDateTime.now().plusDays(2)),
+                invoiceFactory.get(ZonedDateTime.now().minusDays(6), new BigDecimal(100), companies.get(1), ZonedDateTime.now().minusDays(2))
         ));
 
         customers.get(1).getInvoices().add(invoices.get(1));
 
         var customerDb = CustomerDatabase.getInstance();
         customerDb.addAll(customers);
-        var companiesDb = new CompanyDatabase(companies);
-        var invoicesDb = new InvoiceDatabase(invoices);
+        var companiesDb = CompanyDatabase.getInstance();
+        companiesDb.addAll(companies);
+        var invoicesDb = InvoiceDatabase.getInstance();
+        invoicesDb.addAll(invoices);
 
 
         homeworkRequirements(customerDb, companiesDb, invoicesDb);

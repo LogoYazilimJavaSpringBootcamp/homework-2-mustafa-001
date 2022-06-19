@@ -21,7 +21,6 @@ public abstract class Database<T> {
             this.add(item);
         }
     }
-
     public T get(int index) {
         return items.get(index);
     }
