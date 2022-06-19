@@ -1,4 +1,5 @@
 # homework-2
+[Cevaplar](Cevaplar.md)
 
 Java dünyasındaki framework’ler ve çözdükleri problemler nedir?(Spring MVC, JSP,
 Struct, Vaadin). Örnekler ile açıklayın. (20 Puan)
