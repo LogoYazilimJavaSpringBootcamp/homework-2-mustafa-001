@@ -9,7 +9,10 @@ Spring MVC
 ### Katmanlı mimari nedir? (10 Puan)
 
 Katmanlı mimari bir uygulamanın farklı sorumluluklara ait parçalara ayrılarak dizayn edilmesidir.
-Bu şekilde uygulamanın test edilmesi, okunabilmesi kolaylaşır. Her katmanın görevini soyutlaştırarak, seperation of concerns uygulamamızı sağlar.
+Bu şekilde uygulamanın test edilmesi, okunabilmesi kolaylaşır.
+Örneğin client'in isteklerini kontrol eden parça ayrı, veritabanı ile iletişim kuran parçanın ayrı olmasıdır.
+
+Her katmanın görevini soyutlaştırarak, seperation of concerns uygulamamızı sağlar.
 
 ### Garbage collector nedir, nasıl çalışır? Diğer C++ ile karşılaştırın. (10 Puan)
 Hafızada yer ayrılan nesneleri artık ihtiyaç kalmadığında temizleyerek hafıza yönetimi sağlar.
@@ -41,8 +44,8 @@ Nesnelerin oluşturulmasında kullanılan patternlardır. Sistemin kullandığı
 - Prototype Pattern
 - Singleton Pattern
 
-### Singleton ve AbstractFactory patterlerini implemente eden kodu yazın.(25 Puan)
-- [Singleton olarak implemente edilmiş CustomerDatabse sınıfı](src/main/java/com/fatura/database/CompanyDatabase.java)
+### Singleton ve AbstractFactory patterlerini implemente eden kodu yazın.(25 Puan) 
+- [Singleton olarak implemente edilmiş CustomerDatabse sınıfı](src/main/java/com/fatura/database/CompanyDatabase.java) 
 - [Abstract Invoice sınıfını üreten AbstractInvoiceFactory implementasyonu](src/main/java/com/fatura/entities/factories/AbstractInvoiceFactory.java)
 
 
